@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="menu"></div>
+
+<div id="study" style="display:none;">
+
+  <div id="topBar">
+    <button id="backBtn" onclick="goBack()">←</button>
+
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+  </div>
+
+  <img id="image" style="max-width:100%; display:none;">
+  <div id="card"></div>
+
+  <textarea id="answerInput" style="display:none;"></textarea>
+  <div id="choices"></div>
+
+  <div id="buttons">
+    <button id="submitBtn" onclick="submitAnswer()">정답 확인</button>
+    <button onclick="showHint()">힌트</button>
+    <button onclick="nextCard()">다음</button>
+  </div>
+
+  <p id="result"></p>
+  <p id="explanation"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
