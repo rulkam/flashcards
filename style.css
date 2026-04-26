@@ -46,6 +46,28 @@ body {
   cursor: pointer;
 }
 
+#answerInput {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  background: #222;
+  color: white;
+
+  border: 1px solid #444;
+  border-radius: 6px;
+
+  font-size: 16px;
+  font-family: inherit;   /* 버튼이랑 동일 폰트 */
+
+  box-sizing: border-box;
+}
+
+#answerInput {
+  min-height: 60px;
+  resize: none;   /* 크기 조절 막기 (선택) */
+}
+
 #progressContainer {
   flex: 1;
   height: 10px;

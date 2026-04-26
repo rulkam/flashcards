@@ -26,9 +26,8 @@ const subjects = {
         explanation: "설명"
       },
       {
-        type: "choice",
+        type: "short",
         front: "문제2",
-        options: ["선지1","선지2"],
         answer: "선지1",
         hint: "힌트",
         explanation: "설명"
