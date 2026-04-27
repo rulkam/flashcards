@@ -7,6 +7,50 @@ body {
   margin-top: 50px;
 }
 
+button {
+  background: #2a2a2a;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #3a3a3a;
+}
+
+#submitBtn {
+  background: #4a4a4a;
+  font-weight: bold;
+}
+
+#answerInput {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  background: #222;
+  color: white;
+
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-family: inherit;
+}
+
+/* 정답/오답 색 */
+.input-correct {
+  border: 2px solid rgb(73, 118, 68);
+}
+
+.input-wrong {
+  border: 2px solid rgb(162, 66, 66);
+}
+
 #menu, #study {
   width: 400px;
 }
@@ -40,6 +84,11 @@ body {
   width: 35px;
   height: 35px;
   font-size: 18px;
+  align-items: center;
+
+  padding: 0;     
+  line-height: 1;
+
   background: #333 !important;
   border: none;
   color: white !important;
