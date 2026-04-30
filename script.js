@@ -294,6 +294,7 @@ const subjects = {
 
 
 let queue = [];
+let wrongQueue = [];
 let currentCard = null;
 let selectedChoice = null;
 let answered = false;
@@ -469,7 +470,7 @@ function checkAnswer(user) {
 
   } else {
     res.innerText = "오답";
-    queue.push(currentCard);
+    wrongQueue.push(currentCard);
 
     if (currentCard.type === "short") {
       inputEl.classList.add("input-wrong");
@@ -509,7 +510,22 @@ function nextCard(first = false) {
     return;
   }
 
-  if (queue.length === 0) {
+  // 남은 문제 먼저
+  if (queue.length > 0) {
+    const index = Math.floor(Math.random() * queue.length);
+    currentCard = queue[index];
+    queue.splice(index, 1);
+
+  } else if (wrongQueue.length > 0) {
+    // 남은 문제 다 풀면 오답 시작
+    queue = [...wrongQueue];
+    wrongQueue = [];
+
+    const index = Math.floor(Math.random() * queue.length);
+    currentCard = queue[index];
+    queue.splice(index, 1);
+
+  } else {
     const restart = confirm("학습을 완료하였습니다. 다시 학습할까요?");
     if (restart) {
       restartUnit();
@@ -518,10 +534,6 @@ function nextCard(first = false) {
     }
     return;
   }
-
-  const index = Math.floor(Math.random() * queue.length);
-  currentCard = queue[index];
-  queue.splice(index, 1);
 
   answered = false;
   renderCard();
