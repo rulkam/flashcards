@@ -60,21 +60,21 @@ const subjects = {
         type: "short",
         front: "삼국 시대의 사람들은 사람이 죽더라도 그 영혼이 다른 세상에서 살아간다고 생각하였기 때문에, 무덤 안에 ____를 넣었다.",
         answer: ["껴묻거리"],
-        explanation: "나이스"
+        explanation: "정답은 껴묻거리입니다."
       },
       {
         type: "choice",
         front: "가야 연맹을 정복한 왕으로 옳은 것을 고르세요.",
         options: ["진흥왕","광개토 대왕","성왕","법흥왕"],
         answer: "진흥왕",
-        explanation: "나이스"
+        explanation: "정답은 진흥왕입니다."
       },
       {
         type: "choice",
         front: "법흥왕의 업적으로 옳지 않은 것을 고르세요.",
         options: ["율령 반포","황룡사 건설","불교 공인","금관가야 정복"],
         answer: "황룡사 건설",
-        explanation: "나이스"
+        explanation: "정답은 황룡사 건설입니다."
       },
       {
         type: "choice",
@@ -95,7 +95,7 @@ const subjects = {
         front: "신라에서는 골품제로 정치, 사회 활동과 일상생활을 제한하였다.",
         options: ["O","X"],
         answer: "O",
-        explanation: "넵"
+        explanation: "신라에서는 골품제로 정치, 사회 활동과 일상생활을 제한하였습니다."
       },
       {
         type: "choice",
@@ -109,19 +109,19 @@ const subjects = {
         front: "철기의 보급으로 변한 사회의 모습으로 옳지 않은 것을 고르세요.",
         options: ["농업 생산량 증가","전쟁 활생화","여러 나라 건국","불교의 유행"],
         answer: "불교의 유행",
-        explanation: "나이스"
+        explanation: "철기의 보급으로 인해 농업 생산량이 증가하고 전쟁이 활발해졌으며, 여러 나라가 건국되었지만 불교의 유행은 철기의 보급과 직접적인 관련이 없습니다."
       },
       {
         type: "short",
         front: "민며느리제는 어떤 나라의 혼인 풍습이었는지 쓰시오.",
         answer: "옥저",
-        explanation: "나이스"
+        explanation: "정답은 옥저입니다."
       },
       {
         type: "short",
         front: "__는 삼국 중 일본과 가장 활발히 교류하여 일본에 불교를 전했다.",
         answer: "백제",
-        explanation: "나이스"
+        explanation: "정답은 백제입니다."
       },
     ],
     "남북국 시대의 전개": [
@@ -130,7 +130,7 @@ const subjects = {
         front: "백제와 고구려의 멸망 이후 부흥 운동은 모두 실패하였다.",
         options: ["O","X"],
         answer: "O",
-        explanation: "넵"
+        explanation: "넵.."
       },
       {
         type: "choice",
@@ -144,35 +144,35 @@ const subjects = {
         front: "해동성국을 이룬 발해의 왕으로 옳은 것을 고르시오.",
         options: ["대조영","무왕","문왕","선왕"],
         answer: "선왕",
-        explanation: "나이스"
+        explanation: "정답은 선왕입니다."
       },
       {
         type: "ordering",
         front: "일어난 일을 순서대로 배열하세요.",
         options: ["수의 대륙 통일", "살수 대첩", "연개소문 집권","안시성 싸움"],
         answer: ["수의 대륙 통일", "살수 대첩", "연개소문 집권","안시성 싸움"],
-        explanation: "나이스"
+        explanation: "정답은 수의 대륙 통일 → 살수 대첩 → 연개소문 집권 → 안시성 싸움 순입니다."
       },
       {
         type: "ordering",
         front: "일어난 일을 순서대로 배열하세요.",
         options: ["혜공왕 피살", "원종과 애노의 난", "후백제 건국","후고구려 건국"],
         answer: ["혜공왕 피살", "원종과 애노의 난", "후백제 건국","후고구려 건국"],
-        explanation: "나이스"
+        explanation: "정답은 혜공왕 피살 → 원종과 애노의 난 → 후백제 건국 → 후고구려 건국 순입니다."
       },
       {
         type: "ordering",
         front: "일어난 일을 순서대로 배열하세요.",
         options: ["백제 멸망","고구려 멸망","나당 전쟁","삼국 통일"],
         answer: ["백제 멸망", "고구려 멸망", "나당 전쟁", "삼국 통일"],
-        explanation: "나이스"
+        explanation: "정답은 백제 멸망 → 고구려 멸망 → 나당 전쟁 → 삼국 통일 순입니다."
       },
       {
         type: "ordering",
         front: "통일 신라의 왕조를 순서대로 배열하세요.",
         options: ["무열왕","문무왕","신문왕","성덕왕"],
         answer: ["무열왕", "문무왕", "신문왕", "성덕왕"],
-        explanation: "나이스"
+        explanation: "정답은 무열왕 → 문무왕 → 신문왕 → 성덕왕 순입니다."
       },
       {
         type: "short",
@@ -261,6 +261,15 @@ function startStudy(subject, unit) {
   updateProgress();
 }
 
+function moveOrderingItem(index, direction) {
+  const targetIndex = index + direction;
+  if (targetIndex < 0 || targetIndex >= selectedOrder.length) return;
+
+  const [moved] = selectedOrder.splice(index, 1);
+  selectedOrder.splice(targetIndex, 0, moved);
+  renderOrderingOptions();
+}
+
 function renderOrderingOptions() {
   const choices = document.getElementById("choices");
   choices.innerHTML = "";
@@ -323,6 +332,28 @@ function renderOrderingOptions() {
     label.className = "order-label";
     label.innerText = opt;
 
+    const actions = document.createElement("div");
+    actions.className = "order-actions";
+
+    const upBtn = document.createElement("button");
+    upBtn.type = "button";
+    upBtn.className = "move-btn";
+    upBtn.innerText = "↑";
+    upBtn.setAttribute("aria-label", `${opt} 위로 이동`);
+    upBtn.disabled = answered || index === 0;
+    upBtn.onclick = () => moveOrderingItem(index, -1);
+
+    const downBtn = document.createElement("button");
+    downBtn.type = "button";
+    downBtn.className = "move-btn";
+    downBtn.innerText = "↓";
+    downBtn.setAttribute("aria-label", `${opt} 아래로 이동`);
+    downBtn.disabled = answered || index === selectedOrder.length - 1;
+    downBtn.onclick = () => moveOrderingItem(index, 1);
+
+    actions.appendChild(upBtn);
+    actions.appendChild(downBtn);
+
     const handle = document.createElement("button");
     handle.type = "button";
     handle.className = "drag-handle";
@@ -344,6 +375,7 @@ function renderOrderingOptions() {
     });
 
     row.appendChild(label);
+    row.appendChild(actions);
     row.appendChild(handle);
     list.appendChild(row);
   });

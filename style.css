@@ -43,11 +43,11 @@ button:hover {
 }
 
 /* 정답/오답 색 */
-.input-correct {
+#answerInput.input-correct {
   border: 2px solid rgb(73, 118, 68);
 }
 
-.input-wrong {
+#answerInput.input-wrong {
   border: 2px solid rgb(162, 66, 66);
 }
 
@@ -193,15 +193,30 @@ button:hover {
   text-align: left;
 }
 
+.order-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.move-btn,
 .drag-handle {
-  margin-left: 10px;
   padding: 6px 8px;
   background: #333;
   border-radius: 6px;
-  cursor: grab;
   font-size: 14px;
 }
 
+.move-btn {
+  min-width: 32px;
+}
+
+.drag-handle {
+  margin-left: 4px;
+  cursor: grab;
+}
+
+.move-btn:disabled,
 .drag-handle:disabled {
   cursor: default;
   opacity: 0.7;
