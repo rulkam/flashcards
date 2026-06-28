@@ -50,11 +50,25 @@ const subjects = {
         explanation: "정답은 백제 → 고구려 → 신라 순입니다."
       },
       {
+        type: "ordering",
+        front: "가야 연맹을 주도한 나라를 순서대로 나열하세요.",
+        options: ["금관가야", "대가야"],
+        answer: ["금관가야", "대가야"],
+        explanation: "정답은 금관가야 → 대가야 순입니다."
+      },
+      {
         type: "choice",
         front: "소수림왕의 업적으로 옳지 않은 것을 고르세요.",
         options: ["불교 수용","율령 반포","태학 설립","진대법 시행"],
         answer: "진대법 시행",
         explanation: "진대법을 시행한 왕은 고국천왕입니다."
+      },
+      {
+        type: "choice",
+        front: "왕권을 강화하기 위한 삼국의 노력으로 옳지 않은 것을 고르세요.",
+        options: ["불교 수용","율령 반포","왕위의 부자 상속","화백 회의 강화"],
+        answer: "화백 회의 강화",
+        explanation: "화백 회의는 신라의 귀족 회의로, 왕권을 강화하기 위한 제도와는 거리가 있습니다."
       },
       {
         type: "short",
@@ -74,14 +88,21 @@ const subjects = {
         front: "법흥왕의 업적으로 옳지 않은 것을 고르세요.",
         options: ["율령 반포","황룡사 건설","불교 공인","금관가야 정복"],
         answer: "황룡사 건설",
-        explanation: "정답은 황룡사 건설입니다."
+        explanation: "정답은 황룡사 건설입니다. 황룡사는 진흥왕이 건설한 사찰입니다."
+      },
+      {
+        type: "choice",
+        front: "신라의 고분으로 옳은 것을 고르세요.",
+        options: ["돌무지무덤","돌무지덧널무덤","벽돌무덤","돌덧널무덤"],
+        answer: "돌무지덧널무덤",
+        explanation: "정답은 돌무지덧널무덤입니다. 벽화가 없으며, 도굴이 어려워 많은 껴묻거리가 보존되었습니다."
       },
       {
         type: "choice",
         front: "삼한은 제정일치 사회였다.",
         options: ["O","X"],
         answer: "X",
-        explanation: "삼한에서는 천군이라는 제사장과 군장이 분리되어 있었다."
+        explanation: "삼한에서는 천군이라는 제사장과 군장이 분리되어 있었습니다."
       },
       {
         type: "choice",
@@ -112,6 +133,13 @@ const subjects = {
         explanation: "철기의 보급으로 인해 농업 생산량이 증가하고 전쟁이 활발해졌으며, 여러 나라가 건국되었지만 불교의 유행은 철기의 보급과 직접적인 관련이 없습니다."
       },
       {
+        type: "choice",
+        front: "옥저를 정복한 왕으로 옳은 것을 고르세요.",
+        options: ["태조왕","무왕","광개토 대왕","진흥왕"],
+        answer: "태조왕",
+        explanation: "옥저는 태조왕이 정복했습니다."
+      },
+      {
         type: "short",
         front: "민며느리제는 어떤 나라의 혼인 풍습이었는지 쓰시오.",
         answer: "옥저",
@@ -131,6 +159,27 @@ const subjects = {
         options: ["O","X"],
         answer: "O",
         explanation: "넵.."
+      },
+      {
+        type: "choice",
+        front: "신문왕의 업적으로 옳지 않은 것을 고르세요.",
+        options: ["녹읍 폐지","김흠돌의 난 진압","국학 설치","정전 지급"],
+        answer: "정전 지급",
+        explanation: "성덕왕이 백성에게 정전을 지급하였습니다."
+      },
+      {
+        type: "choice",
+        front: "___ 최치원은 진성 여왕에게 개혁안을 제시했지만 실현되지 않았다.",
+        options: ["6두품","호족","농민","승려"],
+        answer: "6두품",
+        explanation: "6두품 최치원은 당에서 유학한 후 귀국하여 진성 여왕에게 개혁안을 제시했으나, 실현되지 않았습니다."
+      },
+      {
+        type: "choice",
+        front: "발해의 지배층에는 말갈인이 많았고, 고구려 유민이 일부 포함되었다.",
+        options: ["O","X"],
+        answer: "X",
+        explanation: "발해의 지배층에는 고구려 유민이 많았고, 말갈인이 일부 포함되었습니다."
       },
       {
         type: "choice",
@@ -186,6 +235,13 @@ const subjects = {
         options: ["고구려","부여","신라", "백제"],
         answer: "고구려",
         explanation: "발해는 고구려 유민이 중심이 되어 세운 나라인 만큼 고구려 계승 의식이 강하였습니다."
+      },
+      {
+        type: "choice",
+        front: "유학을 가르치는 기관으로 옳지 않은 것을 고르세요.",
+        options: ["화랑도","주자감","태학", "국학"],
+        answer: "화랑도",
+        explanation: "화랑도는 유학을 가르치는 기관이 아닌, 무예를 익히고 몸과 마음을 단련하는 신라의 청소년 단체입니다."
       },
     ],
   },
@@ -510,7 +566,7 @@ function checkAnswer(user) {
   }
 
   if (isCorrect) {
-    res.innerText = "정답";
+    res.innerText = "정답입니다.";
     correctCount++;
 
     if (currentCard.type === "short") {
@@ -518,7 +574,7 @@ function checkAnswer(user) {
     }
 
   } else {
-    res.innerText = "오답";
+    res.innerText = "오답입니다.";
     wrongQueue.push(currentCard);
 
     if (currentCard.type === "short") {
