@@ -523,7 +523,7 @@ function submitAnswer() {
     user = document.getElementById("answerInput").value;
 
     if (!user.trim()) {
-      alert("정답을 입력해주세요");
+      alert("정답을 입력해주세요 (ㆆ_ㆆ)");
       answered = false;
       return;
     }
@@ -533,7 +533,7 @@ function submitAnswer() {
 
   } else {
     if (!selectedChoice) {
-      alert("정답을 선택해주세요");
+      alert("정답을 선택해주세요 (ㆆ_ㆆ)");
       answered = false;
       return;
     }
@@ -566,7 +566,7 @@ function checkAnswer(user) {
   }
 
   if (isCorrect) {
-    res.innerText = "정답입니다.";
+    res.innerText = "정답입니다 (ദ്ദി˙ᗜ˙)";
     correctCount++;
 
     if (currentCard.type === "short") {
@@ -574,7 +574,7 @@ function checkAnswer(user) {
     }
 
   } else {
-    res.innerText = "오답입니다.";
+    res.innerText = "오답입니다 (ᵕ—ᴗ—)";
     wrongQueue.push(currentCard);
 
     if (currentCard.type === "short") {
@@ -629,7 +629,7 @@ function checkAnswer(user) {
 
 function nextCard(first = false) {
   if (!first && !answered) {
-    alert("정답을 확인해주세요.");
+    alert("정답을 확인해주세요 (ㆆ_ㆆ)");
     return;
   }
 
